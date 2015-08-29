@@ -29,7 +29,7 @@ type CassandraDatabase struct {
 
 func (cassandra *CassandraDatabase) CreateMigrationsTable() error {
 	err := cassandra.writerSession.Query(`
-		CREATE TABLE migrations (
+		CREATE TABLE IF NOT EXISTS migrations (
 			name TEXT,
 			created_at TIMEUUID,
 			PRIMARY KEY (name)
